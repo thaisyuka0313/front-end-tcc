@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login - Controle de Estoque</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+  }
+
+  .container {
+    display: flex;
+    width: 900px;
+    height: 550px;
+    box-shadow: 0 0 15px rgb(0 0 0 / 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+  }
+
+  .left {
+    background-color: #f60;
+    color: white;
+    flex: 1;
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .left h1.logo {
+    font-weight: bold;
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .left h2 {
+    font-size: 28px;
+    margin: 0 0 12px 0;
+    font-weight: 700;
+  }
+
+  .left p.subtitle {
+    font-weight: 400;
+    font-size: 17px;
+    margin-bottom: 40px;
+    line-height: 1.4;
+  }
+
+  .features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .features li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  .features li svg {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    margin-right: 12px;
+    stroke: white;
+    stroke-width: 3;
+  }
+
+  .right {
+    flex: 1;
+    padding: 50px 40px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .right h2 {
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 8px;
+  }
+
+  .right p.description {
+    color: #555;
+    margin-bottom: 30px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    padding: 12px 14px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1.5px solid #ccc;
+    margin-bottom: 18px;
+    width: 100%;
+    outline-offset: 2px;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #f60;
+  }
+
+  .password-wrapper {
+    position: relative;
+  }
+
+  .show-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    user-select: none;
+  }
+
+  .forgot {
+    color: #f60;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: right;
+    margin-top: -14px;
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+
+  .remember {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+
+  .remember input[type="checkbox"] {
+    margin-right: 8px;
+  }
+
+  button {
+    background-color: #f60;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #e55a00;
+  }
+
+  .register {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 15px;
+    color: #555;
+  }
+
+  .register a {
+    color: #f60;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .register a:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 13px;
+    color: #999;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="left">
+    <h1 class="logo">Controle de Estoque</h1>
+    <h2>Bem-vindo de volta!</h2>
+    <p class="subtitle">Gerencie seu estoque de forma eficiente e organizada.</p>
+    <ul class="features">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+        Controle completo do seu inventário
+        <br>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+        Atualizações em tempo real
+      </li>
+    </ul>
+  </div>
+  <div class="right">
+    <h2>Entrar</h2>
+    <p class="description">Faça login para acessar o sistema</p>
+    <form>
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="seu@email.com" required />
+      
+      <label for="senha">Senha <span class="forgot" onclick="alert('Recuperação de senha')">Esqueceu a senha?</span></label>
+      <div class="password-wrapper">
+        <input id="senha" type="password" placeholder="Senha" required />
+        <span class="show-password" onclick="togglePassword()">👁️</span>
+      </div>
+      
+      <div class="remember">
+        <input id="remember" type="checkbox" />
+        <label for="remember" style="margin: 0;">Lembrar de mim</label>
+      </div>
+      
+      <button type="submit">Entrar →</button>
+    </form>
+    <div class="register">
+      Não tem uma conta? <a href="#">Registre-se</a>
+    </div>
+    <footer>
+      © 2025 NEO Estech.
+    </footer>
+  </div>
+</div>
+
+<script>
+  function togglePassword() {
+    const input = document.getElementById('senha');
+    if (input.type === 'password') {
+      input.type = 'text';
+    } else {
+      input.type = 'password';
+    }
+  }
+</script>
+
+</body>
+</html>

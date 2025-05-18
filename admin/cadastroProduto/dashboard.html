@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Controle de Estoque - Dashboard</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="/img/logo.png" alt="Logo Controle de Estoque">
+      <h1>Controle de Estoque</h1>
+    </div>
+    <div class="header-actions">
+      <div class="user-menu">Admin</div>
+    </div>
+  </header>
+
+  <div class="container-dashboard">
+    <!-- Cadastro de Produto -->
+    <section class="section product-form">
+      <h2>Cadastro de Produto</h2>
+      <form>
+        <div class="form-group-column">
+          <label for="productName">Nome do Produto</label>
+          <input type="text" placeholder="Nome do Produto">
+        </div>
+        <div class="form-group-column">
+          <label for="codigo">Código</label>
+          <input type="text" placeholder="Código do produto">
+        </div>
+        <div class="form-group-column">
+          <label for="category">Categoria</label>
+          <select id="category">
+            <option>Selecione uma categoria</option>
+            <option>Conectividade</option>
+            <option>Água e Gás</option>
+            <option>Energia</option>
+            <option>Temperatura</option>
+            <option>IoT</option>
+          </select>
+        </div>
+        <div class="form-group-column">
+          <label for="quantity">Quantidade</label>
+          <input type="number" id="quantity" placeholder="Quantidade">
+        </div>
+        <div class="form-actions">
+          <button type="reset">Limpar</button>
+          <button type="submit">Cadastrar Produto</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Tabela de Produtos Cadastrados -->
+    <section class="section product-table">
+      <h2>Produtos Cadastrados</h2>
+      <input type="text" placeholder="Buscar produto..." class="search-bar">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Código</th>
+            <th>Categoria</th>
+            <th>Qtd</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>001</td>
+            <td>Monitor LED 24"</td>
+            <td>MON24LED</td>
+            <td>Eletrônicos</td>
+            <td>15</td>
+            <td>✏️ 🗑️</td>
+          </tr>
+          <tr>
+            <td>002</td>
+            <td>Teclado Mecânico RGB</td>
+            <td>TEC001RGB</td>
+            <td>Eletrônicos</td>
+            <td>8</td>
+            <td>✏️ 🗑️</td>
+          </tr>
+          <tr>
+            <td>003</td>
+            <td>Cadeira Ergonômica</td>
+            <td>CAD003ERG</td>
+            <td>Móveis</td>
+            <td>5</td>
+            <td>✏️ 🗑️</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</body>
+
+</html>
