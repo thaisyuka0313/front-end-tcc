@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produtos Cadastrados</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f3f3f3;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ff6a00;
+      padding: 20px 40px;
+      color: white;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo img {
+      width: 100px;
+      height: 100px;
+      background: white;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .container-dashboard {
+      padding: 30px;
+    }
+
+    .section {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #ff6a00;
+      margin-bottom: 20px;
+    }
+
+    .search-bar {
+    width: 100%;
+   padding: 12px 16px;
+   font-size: 16px;
+   border: 2px solid #ccc;
+   border-radius: 10px;
+   outline: none;
+   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+   margin-bottom: 20px;
+   box-sizing: border-box;
+}
+
+.search-bar:focus {
+  border-color: #ff6a00;
+  box-shadow: 0 0 8px rgba(255, 106, 0, 0.3);
+}
+    
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #ffe6d1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="header">
+    <div class="logo">
+      <img src="/login/logoneo.png" alt="Logo NeoEstech" />
+      <h1>Bem-vindo, Visualizador</h1>
+    </div>
+  </header>
+
+  <!-- Conteúdo -->
+  <div class="container-dashboard">
+    <section class="section">
+      <h2>Produtos Cadastrados</h2>
+      <input type="text" id="searchInput" class="search-bar" placeholder="Buscar produto pelo nome..." />
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Código</th>
+            <th>Categoria</th>
+            <th>Qtd</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="productTableBody">
+          <!-- Conteúdo dinâmico aqui -->
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <!-- Script para buscar produtos -->
+  <script>
+    const input = document.getElementById('searchInput');
+    const tableBody = document.getElementById('productTableBody');
+
+    window.addEventListener('DOMContentLoaded', () => {
+      fetchProducts('');
+    });
+
+    input.addEventListener('input', () => {
+      const query = input.value.trim();
+      fetchProducts(query);
+    });
+
+    async function fetchProducts(query) {
+      try {
+        const token = localStorage.getItem('token');
+        const url = query
+          ? `http://localhost:5000/api/product?name=${encodeURIComponent(query)}`
+          : `http://localhost:5000/api/product`;
+
+        const response = await fetch(url, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) throw new Error('Erro na requisição');
+
+        const data = await response.json();
+        tableBody.innerHTML = '';
+
+        if (data.length === 0) {
+          tableBody.innerHTML = '<tr><td colspan="6">Nenhum produto encontrado.</td></tr>';
+          return;
+        }
+
+        data.forEach(p => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${p.id}</td>
+            <td>${p.name}</td>
+            <td>${p.code}</td>
+            <td>${p.category}</td>
+            <td>${p.quantity}</td>
+            <td>✏️ 🗑️</td>
+          `;
+          tableBody.appendChild(row);
+        });
+
+      } catch (err) {
+        console.error(err);
+        tableBody.innerHTML = '<tr><td colspan="6">Erro ao carregar produtos.</td></tr>';
+      }
+    }
+  </script>
+
+</body>
+</html>
